@@ -1,0 +1,15 @@
+{
+  "name": "kgib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gen-notice.js",
+  "scripts": {
+    "gen-notice": "node ./notice/gen-master.js && node ./notice/gen-detail.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "read-excel-file": "^5.2.25"
+  }
+}
