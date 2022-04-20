@@ -170,7 +170,7 @@ readXlsxFile(fs.createReadStream("./注意事項清單.xlsx")).then((rows) => {
         : 0;
 
     sql_item.push(
-      ` (${masterId}, '${label}', '${content}', '${enContent}', ${sort}, ${bolder}, '${colorCode}', GETDATE(), GETDATE()) `
+      ` (${masterId}, '${label}', N'${content}', '${enContent}', ${sort}, ${bolder}, '${colorCode}', GETDATE(), GETDATE()) `
     );
   }
 
@@ -186,7 +186,7 @@ readXlsxFile(fs.createReadStream("./注意事項清單.xlsx")).then((rows) => {
         console.error(err);
         return;
       }
-      //文件写入成功。
+      //文件寫入成功。
     });
   } else {
     console.log(`Empty Data`);

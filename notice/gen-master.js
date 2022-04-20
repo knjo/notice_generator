@@ -130,7 +130,7 @@ readXlsxFile(fs.createReadStream("./注意事項清單.xlsx")).then((rows) => {
         return;
       }
     });
-    //文件写入成功。
+    //文件寫入成功。
   } else {
     console.log(`Empty Data`);
   }
