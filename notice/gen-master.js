@@ -101,10 +101,12 @@ readXlsxFile(fs.createReadStream("./注意事項清單.xlsx")).then((rows) => {
 
     //#endregion
 
-    if (unique_list.some((x) => x.featureId == featureId && x.tag == tag)) {
+    //針對FeatureId 欄位進行@分割 取得FeatureId資訊 與 Scenario 場景欄位
+    const features = featureId.split('@');
+    if (unique_list.some((x) => x.featureId == features[0] && x.tag == tag && x.scenario == features[1])) {
       continue;
     } else {
-      unique_list.push({ featureId, tag });
+      unique_list.push({ featureId:features[0], tag, scenario:features[1] });
     }
   }
 
@@ -114,9 +116,8 @@ readXlsxFile(fs.createReadStream("./注意事項清單.xlsx")).then((rows) => {
 
   if (unique_list.length) {
     console.log(`共 ${unique_list.length} 項 Mater Key`);
-
     const item = unique_list.map(
-      (x) => ` ('${x.featureId}', '${x.tag}', GETDATE(), GETDATE()) `
+      (x) => ` ('${x.featureId}', '${x.tag}', '${x.scenario ?? ''}', GETDATE(), GETDATE()) `
     );
 
     sql += `${item.join(",")}`;
