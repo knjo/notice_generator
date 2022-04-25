@@ -10,18 +10,9 @@ wb.xlsx.readFile(fileName).then(() => {
 
     // feature Id index
     let featureIdIndex = 2;
-    // tag index
-    let tagIndex = 3
-    // sort index
-    let sortIndex = 4;
-    // label index
-    let labelIndex = 5;
-    // content index
-    let contentIndex = 6;
-    // english content index
-    let enContentIndex = 7;
-    // color code index
-    let colorCodeIndex = 8;
+
+    // tag, sort, label, content, english content, color code index: 3~8
+
     // bolder index
     let bolderIndex = 9;
 
@@ -37,7 +28,9 @@ wb.xlsx.readFile(fileName).then(() => {
     let sql = "INSERT INTO BNKMFeatureNoticeDetail VALUES";
     const sql_item = [];
 
+    // go through all the rows with data
     for (let row = 2; row <= ws.actualRowCount; row++) {
+        // detail: column 2~9
         for (let col = featureIdIndex; col <= bolderIndex; col++) {
             const cellValue = ws.getRow(row).getCell(col).text
             switch (col) {
