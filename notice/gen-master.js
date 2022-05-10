@@ -117,7 +117,7 @@ readXlsxFile(fs.createReadStream("./注意事項清單.xlsx")).then((rows) => {
   if (unique_list.length) {
     console.log(`共 ${unique_list.length} 項 Mater Key`);
     const item = unique_list.map(
-      (x) => ` ('${x.featureId}', '${x.tag}', '${x.scenario ?? ''}', GETDATE(), GETDATE()) `
+      (x) => ` ('${x.featureId}', '${x.tag}', `.concat(x.scenario?`'${x.scenario}'`:'NULL', ', GETDATE(), GETDATE()) ')
     );
 
     sql += `${item.join(",")}`;
